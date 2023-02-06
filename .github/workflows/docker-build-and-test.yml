@@ -17,6 +17,6 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag local
     - name: Build code
-      run: docker run -it -v $PWD -w local mkdir build && cd build && cmake .. -DENABLE_TESTS=ON && make -j4
+      run: docker run -it -v $PWD:/srv -w/srv local mkdir build && cd build && cmake .. -DENABLE_TESTS=ON && make -j4
     - name: Run tests
-      run: docker run -it -v $PWD/build -w/build local make test
+      run: docker run -it -v $PWD:/srv -w/srv local make test

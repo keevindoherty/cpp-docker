@@ -15,9 +15,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+
+    - name: Build Docker image
       run: docker build . --file Dockerfile --tag local
+
     - name: Build code
-      run: docker run -it -v $PWD:/srv -w/srv local mkdir build && cd build && cmake .. -DENABLE_TESTS=ON && make -j4
+      run: docker run -v $PWD:/work -w/work local /bin/bash -c "mkdir build && cd build && cmake .. -DENABLE_TESTS=ON && make -j"
+
     - name: Run tests
-      run: docker run -it -v $PWD:/srv -w/srv local make test
+      run: docker run -v $PWD:/work -w/work local /bin/bash -C "make test"

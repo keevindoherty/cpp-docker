@@ -5,7 +5,8 @@ ENV TZ=America/New_York
 
 RUN apt-get -y update && \
     apt-get -y install build-essential cmake git \
-        libboost-all-dev libtbb-dev
+        libboost-all-dev libtbb-dev \
+        libeigen3-dev libgtest-dev
 
 RUN git clone https://github.com/borglab/gtsam.git && \
     cd gtsam && git checkout ${GTSAM_COMMIT} && \

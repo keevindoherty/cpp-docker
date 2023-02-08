@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(foo)
 
 # Set some compilation options.
@@ -12,22 +12,9 @@ option(ENABLE_TESTS "Enable tests" OFF)
 find_package(GTSAM 4.1 REQUIRED)
 find_package(Eigen3 3.3 REQUIRED)
 
-set(FOO_HDRS
-  include/foo.h
-  )
-
-set(FOO_SRCS
-  src/foo.cpp
-  )
-
-set(FOO_LIBS
-  gtsam
-  Eigen3::Eigen
-  )
-
-add_library(foo STATIC ${FOO_SRCS} ${FOO_HDRS})
+add_library(foo src/foo.cpp)
 target_include_directories(foo PUBLIC include)
-target_link_libraries(foo PUBLIC ${FOO_LIBS})
+target_link_libraries(foo PUBLIC gtsam Eigen3::Eigen)
 
 # Make library accessible to other cmake projects
 export(PACKAGE foo)

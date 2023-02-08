@@ -8,6 +8,7 @@ RUN apt-get -y update && \
         libboost-all-dev libtbb-dev \
         libeigen3-dev libgtest-dev
 
+ARG GTSAM_COMMIT=caa14bc
 RUN git clone https://github.com/borglab/gtsam.git && \
     cd gtsam && git checkout ${GTSAM_COMMIT} && \
     mkdir build && cd build && cmake \
@@ -17,7 +18,7 @@ RUN git clone https://github.com/borglab/gtsam.git && \
         -DGTSAM_BUILD_TIMING_ALWAYS=OFF \
         -DGTSAM_BUILD_TESTS=OFF \
         .. && \
-    make -j8 install
+    make -j install && ldconfig
 
 # libgtest needed for DCSAM
 # RUN apt-get -y update && apt-get -y install libprotobuf-dev protobuf-compiler libgtest-dev

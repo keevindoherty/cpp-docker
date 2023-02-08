@@ -18,7 +18,7 @@ RUN git clone https://github.com/borglab/gtsam.git && \
         -DGTSAM_BUILD_TIMING_ALWAYS=OFF \
         -DGTSAM_BUILD_TESTS=OFF \
         .. && \
-    make -j install && ldconfig
+    make -j8 install && ldconfig
 
 # libgtest needed for DCSAM
 # RUN apt-get -y update && apt-get -y install libprotobuf-dev protobuf-compiler libgtest-dev

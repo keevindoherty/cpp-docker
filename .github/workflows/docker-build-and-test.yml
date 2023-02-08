@@ -23,4 +23,4 @@ jobs:
       run: docker run -v $PWD:/work -w/work local /bin/bash -c "mkdir build && cd build && cmake -DENABLE_TESTS=ON .. && make -j8"
 
     - name: Run tests
-      run: docker run -v $PWD:/work -w/work local /bin/bash -c "make test"
+      run: docker run -v $PWD:/work -w/work local /bin/bash -c "cd build && make test"
